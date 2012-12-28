@@ -1,0 +1,150 @@
+#!/usr/bin/env ruby
+
+KNITR_REPORTS_PATH=File.join(File.dirname(__FILE__), '..', '/')
+
+if ARGV.size == 2
+    system(%(Rscript -e "library(knitr); library(markdown); knit('#{ARGV[0]}', '#{ARGV[1]}.md'); markdownToHTML('#{ARGV[1]}.md', '#{ARGV[1]}.html', stylesheet='#{KNITR_REPORTS_PATH}stylesheets/report.css', options=c('base64_images', 'toc', 'mathjax','highlight_code'))"))
+end
+
+report_index = "index.html"
+report_title = "Reports"
+css = %(<LINK href="#{KNITR_REPORTS_PATH}knitr_reports/stylesheets/report.css" rel="stylesheet" type="text/css">)
+css_manual=<<EOL
+<style type="text/css">
+a{
+  color: #07C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+body{
+   font-family: Palatino, Georgia, serif;
+   background-color: white;
+   color: #000;
+   padding: 2em;
+}
+
+#container{
+  margin: 0 auto;
+}
+
+table{
+  margin: 0 auto;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, monospace;
+   font-size: 18px;
+}
+
+p, ul, ol {
+    font-size: 22px;
+    line-height: 24px;
+}
+
+h1, h2, h3, h4 {
+    color: #000000;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, p {
+    margin-bottom: 24px;
+    padding: 0;
+    text-align:center;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+   margin: 24px 0 6px;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+pre {
+   margin-top: 0;
+   /*max-width: 95%;*/
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+</style>
+EOL
+html_header = <<EOL
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>#{report_title}</title>
+
+#{css}
+</head>
+
+<body>
+EOL
+
+html_footer = <<EOL
+</body>
+
+</html>
+EOL
+
+reports = Dir['*.html'].sort_by{ |f| File.mtime(f) }.reverse - ["index.html"]
+
+File.open(report_index, 'w') do |f|
+    f.write html_header
+    f.write "<h1>#{report_title}</h1>"
+    f.write %(<table id="content_links">\n)
+    f.write "<tr><th>Name</th><th>Last Modified</th></tr>\n"
+    reports.each do |report_file|
+        f.write %(<tr><td><a href="#{report_file}">#{File.basename(report_file,File.extname(report_file))}</a></td><td>#{File.ctime(report_file).strftime("%H:%M - %e %b %y")}</td></tr>\n)
+    end
+    f.write "</table>"
+    f.write html_footer
+end
+
