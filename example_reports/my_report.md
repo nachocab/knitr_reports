@@ -49,13 +49,28 @@ or hide the code and only show the result:
 
 Be sure to use different names for the chunk labels or you’ll get an error.
 
+You can also use markdown code blocks, but they don’t get processed:
+
+```
+function(var){
+    var
+}
+```
+
+or without backticks (just indent 4 spaces):
+
+    function(var){
+        var
+    }
+
+
 ## Images
 
 Here’s a cool image:
 
 
 ```r
-plot(1:10, round(rnorm(10)), pch = 16, main = "Cool image")
+plot(1:100, round(rnorm(100)), pch = 16, main = "Cool image")
 ```
 
 ![](figure/my_report/cool_image.png) 
@@ -67,23 +82,23 @@ You can generate multiple images inside the same chunk (each one gets a differen
 
 
 ```r
-plot(1:10, round(rnorm(10)), pch = 16, main = "Cool image 1", col = "blue")
+plot(1:100, round(rnorm(100)), pch = 16, main = "Cool image 1", col = "blue")
 ```
 
 ![](figure/my_report/multiple_images1.png) 
 
 ```r
-plot(1:10, round(rnorm(10)), pch = 16, main = "Cool image 2", col = "red")
+plot(1:100, round(rnorm(100)), pch = 16, main = "Cool image 2", col = "red")
 ```
 
 ![NA](figure/my_report/multiple_images2.png) 
 
 
-You can also play with the floats to get text and images side by side.
+You can also use floats to get text and images side by side.
 
 
 ```r
-plot(1:10, round(rnorm(10)), pch = 16, main = "Floated image 1", col = "blue")
+plot(1:100, round(rnorm(100)), pch = 16, main = "Floated image 1", col = "blue")
 ```
 
 <img src="figure/my_report/floated_image1.png"   style="float:left" alt="" title="" /> 
@@ -96,6 +111,7 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+Use an empty div (or a css fix) to go back to normal.
 <div style="clear: both;"></div>
 
 ## Multiple languages
@@ -113,7 +129,6 @@ index.html
 my_report.Rmd
 my_report.html
 my_report.md
-prueba.html
 ```
 
 

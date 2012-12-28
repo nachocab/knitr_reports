@@ -42,12 +42,27 @@ or hide the code and only show the result:
 
 Be sure to use different names for the chunk labels or you’ll get an error.
 
+You can also use markdown code blocks, but they don’t get processed:
+
+```
+function(var){
+    var
+}
+```
+
+or without backticks (just indent 4 spaces):
+
+    function(var){
+        var
+    }
+
+
 ## Images
 
 Here’s a cool image:
 
 ```{r cool_image}
-    plot(1:10,round(rnorm(10)), pch=16, main="Cool image")
+    plot(1:100,round(rnorm(100)), pch=16, main="Cool image")
 ```
 
 If you check the `figure/my_report/` folder you’ll see that it automatically generated the `cool_image.png` file from the name of the code chunk. Even though it generated the image file, the call to `markdownToHTML` specifies that images should be embedded in the `html` file using base 64 encoding.
@@ -55,14 +70,14 @@ If you check the `figure/my_report/` folder you’ll see that it automatically g
 You can generate multiple images inside the same chunk (each one gets a different name based on the code chunk name), as well as change the image dimensions (in inches):
 
 ```{r multiple_images, fig.width=4, fig.height=4}
-    plot(1:10,round(rnorm(10)), pch=16, main="Cool image 1", col="blue")
-    plot(1:10,round(rnorm(10)), pch=16, main="Cool image 2", col="red")
+    plot(1:100,round(rnorm(100)), pch=16, main="Cool image 1", col="blue")
+    plot(1:100,round(rnorm(100)), pch=16, main="Cool image 2", col="red")
 ```
 
-You can also play with the floats to get text and images side by side.
+You can also use floats to get text and images side by side.
 
 ```{r floated_image1, fig.width=4, fig.height=4, out.extra='style="float:left"'}
-    plot(1:10,round(rnorm(10)), pch=16, main="Floated image 1", col="blue")
+    plot(1:100,round(rnorm(100)), pch=16, main="Floated image 1", col="blue")
 ```
 
 Lorem1 ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -72,6 +87,7 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+Use an empty div (or a css fix) to go back to normal.
 <div style="clear: both;"></div>
 
 ## Multiple languages
