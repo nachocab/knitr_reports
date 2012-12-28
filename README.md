@@ -1,8 +1,8 @@
 # knitr_reports
 
-knitr_reports is a collection of files that make it easier to generate reports with [knitr][]. Read all about it in my blog.
+knitr_reports is a collection of files that make it easier to generate reports with [knitr][]. You can see what they look like [here][live_sample_report] and [here][live_basic_usage]
 
-You can move the `rmd_sublime_snippets` folder to the Sublime Text Packages folder, but to use the `Rmd.sublime-build file, you will have to update the path to `update_report_index` to your own path:
+You can move the `rmd_sublime_snippets` folder to the Sublime Text Packages folder, but to use the `Rmd.sublime-build` file, you will have to update the path to `update_report_index` to your own path:
 
 ```
     "cmd": ["YOUR_PATH/knitr_reports/bin/update_report_index", "$file", "$file_base_name"],
@@ -17,5 +17,8 @@ If there were no errors, it will generate the compiled `md` file, the converted 
 Each report will use `stylesheets/report.css` and will include a table of contents at the top.
 
 [knitr]: http://yihui.name/knitr/        "knitr"
+[live_sample_report]: http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.html
+[live_basic_usage]: http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/basic_usage.html
+
 
 
