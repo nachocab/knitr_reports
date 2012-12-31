@@ -1,0 +1,6 @@
+<snippet>
+     <content><![CDATA[function(x){ $1 }]]></content>
+     <tabTrigger>f</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>R function</description>
+ </snippet>

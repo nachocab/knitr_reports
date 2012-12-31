@@ -1,0 +1,6 @@
+<snippet>
+     <content><![CDATA[**$1**]]></content>
+     <tabTrigger>b</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>bold</description>
+ </snippet>

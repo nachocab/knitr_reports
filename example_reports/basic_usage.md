@@ -8,6 +8,7 @@
 The code is in `basic_usage.Rmd` and it should be viewed by opening `basic_usage.html` in Chrome or Firefox.
 
 ## Code chunks
+<div id="chunks"></div>
 
 There are two types:
 
@@ -25,7 +26,7 @@ There are two types:
 
 
 
-* Inline: `7`
+* Inline: 7
 
 For each chunk, you can decide if you want to show the code along with the result:
 
@@ -91,7 +92,7 @@ plot(1:100, round(rnorm(100)), pch = 16, main = "Cool image 1", col = "blue")
 plot(1:100, round(rnorm(100)), pch = 16, main = "Cool image 2", col = "red")
 ```
 
-![NA](figure/basic_usage/multiple_images2.png) 
+![](figure/basic_usage/multiple_images2.png) 
 
 
 You can also use floats to get text and images side by side.
@@ -101,7 +102,7 @@ You can also use floats to get text and images side by side.
 plot(1:100, round(rnorm(100)), pch = 16, main = "Floated image 1", col = "blue")
 ```
 
-<img src="figure/basic_usage/floated_image1.png"   style="float:left" alt="" title="" /> 
+<img src="figure/basic_usage/floated_image1.png" title="" alt="" style="float:left" />
 
 
 Lorem1 ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -124,13 +125,15 @@ Show the contents of your directory using bash
 ```
 
 ```
-basic_usage.Rmd
-basic_usage.html
-basic_usage.md
-figure
-index.html
-my_report.Rmd
-sample_report.html
+## basic_usage.Rmd
+## basic_usage.html
+## basic_usage.md
+## figure
+## index.html
+## my_report.Rmd
+## my_report.html
+## my_report.md
+## sample_report.html
 ```
 
 
@@ -148,7 +151,7 @@ Sys.setenv(MY_FOLDER = "/tmp")
 ```
 
 ```
-MY_FOLDER = /tmp
+## MY_FOLDER = /tmp
 ```
 
 
@@ -160,3 +163,7 @@ knitr uses Mathjax, so you’ll need to be online to render the equations
 * Inline: $\mu = \frac{\phi}{3}$
 * Center-aligned
 $$\mu = \frac{\phi}{3}$$
+
+## Internal Links
+
+[Link to chunks](#chunks)

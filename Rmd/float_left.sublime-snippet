@@ -1,0 +1,6 @@
+<snippet>
+     <content><![CDATA[out.extra='style="float:left"']]></content>
+     <tabTrigger>fl</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>float left</description>
+ </snippet>

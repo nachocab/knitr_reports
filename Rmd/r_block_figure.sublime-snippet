@@ -1,0 +1,8 @@
+<snippet>
+     <content><![CDATA[```{r $1, results="hide"}
+    $2
+```]]></content>
+     <tabTrigger>rbf</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>R block code</description>
+ </snippet>

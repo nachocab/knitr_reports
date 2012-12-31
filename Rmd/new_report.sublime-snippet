@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[---
+
+```{r global_setup, echo=FALSE, cache=FALSE, warning=FALSE}
+
+    opts_chunk\$set(cache=FALSE, cache.path='cache/$1/', fig.path='figure/$1/', autodep=TRUE, fig.cap="", fig.width=7, fig.height=7, echo=FALSE, warning=FALSE, message=FALSE)
+    dep_auto()
+
+```
+
+# ${2:Title}
+
+$0]]></content>
+    <tabTrigger>nr</tabTrigger>
+    <scope></scope>
+    <description>new rmd report</description>
+</snippet>

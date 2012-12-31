@@ -1,0 +1,6 @@
+<snippet>
+     <content><![CDATA[## ]]></content>
+     <tabTrigger>h2</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>header 2</description>
+ </snippet>

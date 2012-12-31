@@ -1,0 +1,7 @@
+<snippet>
+     <content><![CDATA[```
+```{r $1}]]></content>
+     <tabTrigger>irb</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>intermediate R block code</description>
+ </snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<!-- TODO:
+    $1
+-->]]></content>
+    <tabTrigger>td</tabTrigger>
+    <scope>source.rmd</scope>
+    <description>to do</description>
+</snippet>

@@ -15,6 +15,7 @@
 The code is in `basic_usage.Rmd` and it should be viewed by opening `basic_usage.html` in Chrome or Firefox.
 
 ## Code chunks
+<div id="chunks"></div>
 
 There are two types:
 
@@ -116,3 +117,7 @@ knitr uses Mathjax, so you’ll need to be online to render the equations
 * Inline: $\mu = \frac{\phi}{3}$
 * Center-aligned
 $$\mu = \frac{\phi}{3}$$
+
+## Internal Links
+
+[Link to chunks](#chunks)

@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[results="asis"]]></content>
+    <tabTrigger>asis</tabTrigger>
+    <scope>source.rmd</scope>
+    <description>as is</description>
+</snippet>

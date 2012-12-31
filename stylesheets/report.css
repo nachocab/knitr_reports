@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, p {
 h1 {
    font-size:3em;
    text-align:center;
-   text-transform: uppercase;
+   /*text-transform: uppercase;*/
    /*text-transform: lowercase;*/
    /*font-variant: small-caps;*/
    letter-spacing: -1px;

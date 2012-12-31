@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[<div style="clear: both;"></div>]]></content>
+    <tabTrigger>dc</tabTrigger>
+    <scope>source.rmd</scope>
+    <description>div clear float</description>
+</snippet>

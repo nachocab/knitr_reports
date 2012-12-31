@@ -1,0 +1,5 @@
+{
+    "cmd": ["/Users/nacho/Documents/Code/knitr_reports/bin/update_report_index", "$file", "$file_base_name"],
+    "path": "$PATH:/usr/local/bin",
+    "selector": "source.rmd"
+}

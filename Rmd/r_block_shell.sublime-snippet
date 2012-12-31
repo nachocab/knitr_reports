@@ -1,0 +1,10 @@
+<snippet>
+     <content><![CDATA[```{r $1, engine="bash", eval=TRUE}
+
+    $2
+
+```]]></content>
+     <tabTrigger>rbs</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>R shell block code</description>
+ </snippet>

@@ -1,0 +1,6 @@
+<snippet>
+     <content><![CDATA[`r $1`]]></content>
+     <tabTrigger>ri</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>R inline code</description>
+ </snippet>

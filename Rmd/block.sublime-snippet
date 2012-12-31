@@ -1,0 +1,10 @@
+<snippet>
+     <content><![CDATA[```
+
+    $2
+
+```]]></content>
+     <tabTrigger>bl</tabTrigger>
+     <scope>source.rmd</scope>
+     <description>R block code</description>
+ </snippet>
