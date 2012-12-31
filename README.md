@@ -4,7 +4,7 @@ knitr_reports is a collection of files that make it easier to generate reports w
 
 I like to work with Rmarkdown files because they have less cruft than other formats. My workflow involves converting .Rmd files to .md files, and then converting those to HTML files with embedded images. Using embedded images means that when I email a report, I don't have to also attach individual images.
 
-I use a custom snippet[link] to start every report with the following:
+I use a [custom snippet][new_report_snippet] to start every report with the following:
 
 ```md
     ---
@@ -43,13 +43,13 @@ Each report will use `stylesheets/report.css` (feel free to customize it) and wi
 ## Contributions
 I would love to get some help, just send me a message.
 
-TO DO:
+## TO DO
 
 * make renaming reports easier.
 
 [knitr]: http://yihui.name/knitr/        "knitr"
 [live_sample_report]: http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.html
 [live_basic_usage]: http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/basic_usage.html
-
+[new_report_snippet]: https://github.com/nachocab/knitr_reports/blob/master/Rmd/new_report.sublime-snippet
 
 
