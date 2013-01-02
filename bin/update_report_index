@@ -8,7 +8,7 @@ end
 
 report_index = "index.html"
 report_title = "Reports"
-css = %(<LINK href="#{KNITR_REPORTS_PATH}knitr_reports/stylesheets/report.css" rel="stylesheet" type="text/css">)
+css = %(<LINK href="#{KNITR_REPORTS_PATH}stylesheets/report.css" rel="stylesheet" type="text/css">)
 css_manual=<<EOL
 <style type="text/css">
 a{
