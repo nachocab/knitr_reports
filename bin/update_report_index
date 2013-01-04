@@ -3,7 +3,7 @@
 KNITR_REPORTS_PATH=File.join(File.dirname(__FILE__), '..', '/')
 
 if ARGV.size == 2
-    system(%(Rscript -e "library(knitr); library(markdown); knit('#{ARGV[0]}', '#{ARGV[1]}.md'); markdownToHTML('#{ARGV[1]}.md', '#{ARGV[1]}.html', stylesheet='#{KNITR_REPORTS_PATH}stylesheets/report.css', options=c('base64_images', 'toc', 'mathjax','highlight_code'))"))
+    system(%(Rscript -e "library(knitr); library(markdown); knit2html('#{ARGV[0]}', stylesheet='#{KNITR_REPORTS_PATH}stylesheets/report.css', options=c('base64_images', 'toc', 'mathjax','highlight_code'))"))
 end
 
 report_index = "index.html"
