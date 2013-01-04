@@ -1,0 +1,90 @@
+***
+```{r global_setup, echo=FALSE, cache=FALSE, warning=FALSE}
+    opts_chunk$set(cache=FALSE, cache.path='cache/sample_report/', fig.path='figure/sample_report/', autodep=TRUE, fig.cap="", fig.width=7, fig.height=7, echo=FALSE, warning=FALSE, message=FALSE)
+    source_dir("/Users/nacho/Documents/BU/Connor/projects/cmf/src/lib/")
+    dep_auto()
+```
+# Sample Report
+
+## Analysis of raw data
+
+### Moss B
+```{r aux_data}
+    ensembl_info <- read.table("/Users/nacho/Documents/BU/Connor/projects/cmf/raw_data/genome/ensembl_69.txt",sep="@", quote="", header=T, stringsAsFactors=FALSE) # you should fix these duplicated protein coding genes one day: ENSG00000104835 ENSG00000215764 ENSG00000224916 ENSG00000188629 ENSG00000198466
+
+    coords <- read.table("/Users/nacho/Documents/BU/Connor/projects/cmf/raw_data/genome/gene_coords.txt")
+
+    cmf_genes <- scan("/Users/nacho/Documents/BU/Connor/projects/cmf/misc/cmf_genes.txt", "character") # screen
+    cmf_ensembl <- ensembl_info[ensembl_info$gene_symbol %in% cmf_genes,]
+
+    anjan_8 <- list()
+    anjan_9 <- list()
+    moss_a <- list()
+    moss_b <- list()
+```
+
+```{r load_count_data, fig.width=8, fig.height=8}
+
+    moss_stats <- read.table("/Users/nacho/Documents/BU/Connor/projects/cmf/calculations/moss_statistics.txt",sep=",", header=T)
+    moss_b$stats <- moss_stats[moss_stats$experiment == "b",-4]
+
+    moss_b$m_stats <- get_molten_stats(moss_b$stats, c("b_0_hpi","b_0_5_hpi","b_1_hpi","b_2_hpi","b_4_hpi"))
+
+    my_ggplot(moss_b$m_stats, aes(stage, value,group=sample)) +
+        geom_line(aes(color=sample), lwd=1.5) +
+        geom_point(aes(color=sample),size=3) + ylim(0,5e7) +
+        theme(axis.text.x = element_text(angle=45, hjust=1, size=15), axis.title.x=element_blank(), axis.title.y=element_blank()) +
+        labs(title="Number of reads per stage (Moss B)")
+
+```
+
+```{r library_sizes}
+
+    anjan_9$counts <- get_counts("/Users/nacho/Documents/BU/Connor/projects/cmf/calculations/09_counts.txt")
+    anjan_9 <- add_count_objects(anjan_9, ensembl_info, sort_by="hpi_6", unsorted_levels=c(0,0.5,18,2,6))
+
+    moss_a$counts <- get_counts("/Users/nacho/Documents/BU/Connor/projects/cmf/calculations/moss_a_counts.txt")
+    moss_a <- add_count_objects(moss_a, ensembl_info, sort_by="hpi_4", unsorted_levels=c(0.5,0,1,2,4))
+
+    moss_b$counts <- get_counts("/Users/nacho/Documents/BU/Connor/projects/cmf/calculations/moss_b_counts.txt")
+    moss_b <- add_count_objects(moss_b, ensembl_info, sort_by="hpi_4", unsorted_levels=c(0.5,0,1,2,4))
+
+```
+
+---
+
+The following plots show the raw counts (host reads that align uniquely to a gene) for each experiment.
+
+```{r library_sizes_and_distributions, fig.height=8}
+
+    barplot(colSums(anjan_9$counts), main="Counts of reads that mapped\nuniquely to a gene in Anjan 9", las=2, col=get_palette(20), ylab="", xlab="", ylim=c(0,1.25e7))
+    my_ggplot(anjan_9$mnc, aes(x=counts, fill=timepoint)) + geom_density() + facet_wrap(~timepoint, ncol=1) +
+        scale_x_log10(breaks = trans_breaks("log10", function(x) 10^x), labels = trans_format("log10", math_format(10^.x))) + theme(legend.position="none") +
+        labs(title="Distribution of reads in Anjan 9", y="Proportion of genes", x="log10 normalized counts")
+
+```
+
+## Fold changes
+
+The following plots show the log fold changes in each of the three experiments. Around 100 genes (in red) pass the arbitrary threshold of 10-fold increase from 0 to 4hpi (6hpi in Anjan).
+
+**Conclusions**:
+* The ranked fold change plots show the .6% of genes (100 in red out of 16K) that cross the 10-fold increase threshold.
+* The fold change line plots show that the trajectories of the genes that are most expressed at 6hpi/4hpi do not increase uniformly.
+* These genes could interat with vaccinia and be needed for infection.
+* We don’t have any replicates, so we can’t say anything about significance.
+
+```{r fold_changes}
+
+    threshold <- 1
+    anjan_9$top_genes <- rownames(anjan_9$zlc[anjan_9$zlc$hpi_6 > threshold,])
+    moss_a$top_genes <- rownames(moss_a$zlc[moss_a$zlc$hpi_4 > threshold,])
+    moss_b$top_genes <- rownames(moss_b$zlc[moss_b$zlc$hpi_4 > threshold,])
+
+    a <- sapply(seq(1,0.5, by=-.01),function(threshold) l(intersect(rownames(anjan_9$zlc[anjan_9$zlc$hpi_6 > threshold,]), intersect(rownames(moss_a$zlc[moss_a$zlc$hpi_4 > threshold,]),rownames(moss_b$zlc[moss_b$zlc$hpi_4 > threshold,])))))
+
+    plot(anjan_9$zlc$hpi_6, col=ifelse(rownames(anjan_9$zlc) %in% anjan_9$top_genes, rgb(255,0,0,100, maxColorValue=255), rgb(0,0,0,15, maxColorValue=255)), pch=16, main="Anjan 9 Ranked fold changes \n (highest 6hpi vs 0hpi log10 fold change in red)", ylab="log10 fold changes", xlab="Number of genes", las=1)
+    plot_lines(rev_rows(anjan_9$zlc), col=ifelse(rev_rows(anjan_9$zlc)$hpi_6 > threshold, rgb(255,0,0,100, maxColorValue=255), rgb(0,0,0,15, maxColorValue=255)), main="Anjan 9 Fold changes \n (highest 6hpi vs 0hpi log10 fold change in red)", ylab="log10 fold changes", xlab="Timepoint", las=1, col_names=c(0,0.5,2,6,18))
+
+```
+
